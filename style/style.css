@@ -44,6 +44,10 @@ body{
     color: yellow;
 }
 
+.social_icon span:hover{
+    color: white;
+}
+
 .form_header h3{
     color: white;
 }
