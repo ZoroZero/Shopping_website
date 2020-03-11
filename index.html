@@ -21,9 +21,9 @@
                 <div class ="form_header">
                     <h3>Sign in</h3>
                     <div class = "d-flex justify-content-end social_icon">
-                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-facebook-square" scope="public_profile,email"
+                            onlogin="checkLoginState()"></i></span>
 					    <span><i class="fab fa-google-plus-square"></i></span>
-					    <span><i class="fab fa-twitter-square"></i></span>
                     </div>
                 </div>
 
@@ -60,4 +60,39 @@
             </div>
         </div>
     </body>
+
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '{your-app-id}',
+            cookie     : true,
+            xfbml      : true,
+            version    : '{api-version}'
+          });
+            
+          FB.AppEvents.logPageView();   
+            
+        };
+      
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+
+
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+            });
+        }
+    </script>
+
+    <script href = "script/main.js"></script>
 </html>
